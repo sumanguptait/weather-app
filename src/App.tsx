@@ -22,7 +22,7 @@ function App() {
     }
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city},in&units=metric&appid=${apiKey}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city},in&units=metric&appid=${apiKey}`,
       );
       const data = await response.json();
       // console.log(data);
@@ -39,6 +39,7 @@ function App() {
         setError("");
       } else {
         setWeather(null);
+
         setError(data.message);
       }
     } catch (error) {
@@ -46,7 +47,7 @@ function App() {
       setError("Error to fetch weather data");
     }
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     fetchWeather();
   };
@@ -92,7 +93,7 @@ function App() {
                     className="border p-2 rounded bg-gray-50 flex justify-between items-center"
                     key={index}
                   >
-                    <strong>{item.city}</strong> - {item.temperature} C,{" "}
+                    <strong>{item.city}</strong>: {item.temperature} C,{" "}
                     {item.description}
                     <button
                       className="bg-red-400 hover:bg-red-600 text-sm px-3 py-1 rounded"
